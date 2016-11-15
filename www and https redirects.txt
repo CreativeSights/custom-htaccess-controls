@@ -1,0 +1,16 @@
+##### Redirect non-www to www -- BEGIN
+RewriteCond %{HTTP_HOST} !^www\. [NC]
+RewriteRule ^(.*)$ https://www.%{HTTP_HOST}/$1 [R=301,L]
+##### Redirect non-www to www -- END
+
+##### Redirect http to https -- BEGIN
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+##### Redirect http to https -- END
+
+
+##### Direct parked domain to root domain --- BEGIN
+RewriteCond %{HTTP_HOST} ^(www\.)?creativesights\.net
+RewriteRule ^(.*) https://www.creativesights.com/$1 [R=301,L]
+##### Direct parked domain to root domain --- END
+
